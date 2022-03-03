@@ -54,7 +54,6 @@ from dataclasses import dataclass
 import sys
 from os import path
 import os
-from google.colab import drive
 skip_for_run_all = True  # @param {type: 'boolean'}
 
 if skip_for_run_all == False:
@@ -144,22 +143,8 @@ Setting | Description | Default
 # 1. Pre Set Up
 """
 
-# @title 1.2 Prepare Folders
-# @markdown If you connect your Google Drive, you can save the final image of each run on your drive.
 
-google_drive = True  # @param {type:"boolean"}
-
-# @markdown Click here if you'd like to save the diffusion model checkpoint file to (and/or load from) your Google Drive:
-yes_please = True  # @param {type:"boolean"}
-
-# @markdown The folder to output and save models to: (default is `/AI/Disco_Diffusion`)
-google_drive_folder = '/AI/Disco_Diffusion'  # @param {type:"string"}
-
-if google_drive is True:
-    drive.mount('/content/drive')
-    root_path = f'/content/drive/MyDrive{google_drive_folder}'
-else:
-    root_path = '/content'
+root_path = '/content'
 
 # Simple create paths taken with modifications from Datamosh's Batch VQGAN+CLIP notebook
 
@@ -177,12 +162,9 @@ createPath(initDirPath)
 outDirPath = f'{root_path}/images_out'
 createPath(outDirPath)
 
-if google_drive and not yes_please or not google_drive:
-    model_path = '/content/models'
-    createPath(model_path)
-if google_drive and yes_please:
-    model_path = f'{root_path}/models'
-    createPath(model_path)
+model_path = '/content/models'
+createPath(model_path)
+
 # libraries = f'{root_path}/libraries'
 # createPath(libraries)
 
@@ -193,9 +175,9 @@ Run this once at the start of your session and after a restart.
 
 # @title ### 2.1 Install and import dependencies
 
-if google_drive is not True:
-    root_path = f'/content'
-    model_path = '/content/'
+
+root_path = f'/content'
+model_path = '/content/'
 
 model_256_downloaded = False
 model_512_downloaded = False
