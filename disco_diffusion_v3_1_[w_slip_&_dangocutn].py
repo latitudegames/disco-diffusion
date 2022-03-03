@@ -1059,7 +1059,7 @@ elif diffusion_model == '512x512_diffusion_uncond_finetune_008100':
         !wget - -continue {model_512_link} - P {model_path}
         model_512_downloaded = True
 
-
+# TODO @seang: update to PVC
 # Download the secondary diffusion model v2
 if use_secondary_model == True:
     if os.path.exists(model_secondary_path) and check_model_SHA:
@@ -1072,12 +1072,12 @@ if use_secondary_model == True:
             model_secondary_downloaded = True
         else:
             print("Secondary Model SHA doesn't match, redownloading...")
-            !wget - -continue {model_secondary_link} - P {model_path}
+            # !wget - -continue {model_secondary_link} - P {model_path}
             model_secondary_downloaded = True
     elif os.path.exists(model_secondary_path) and not check_model_SHA or model_secondary_downloaded == True:
         print('Secondary Model already downloaded, check check_model_SHA if the file is corrupt')
     else:
-        !wget - -continue {model_secondary_link} - P {model_path}
+        # !wget - -continue {model_secondary_link} - P {model_path}
         model_secondary_downloaded = True
 
 model_config = model_and_diffusion_defaults()
