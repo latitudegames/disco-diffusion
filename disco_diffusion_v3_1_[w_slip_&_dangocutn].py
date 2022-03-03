@@ -1164,8 +1164,9 @@ if SLIPB16:
 
 if SLIPL16:
     SLIPL16model = SLIP_VITL16(ssl_mlp_dim=4096, ssl_emb_dim=256)
-    if not os.path.exists(f'{model_path}/slip_large_100ep.pt'):
-        !wget https: // dl.fbaipublicfiles.com/slip/slip_large_100ep.pt - P {model_path}
+    # TODO @seang: update to PVC
+    # if not os.path.exists(f'{model_path}/slip_large_100ep.pt'):
+    # !wget https: // dl.fbaipublicfiles.com/slip/slip_large_100ep.pt - P {model_path}
     sd = torch.load(f'{model_path}/slip_large_100ep.pt')
     real_sd = {}
     for k, v in sd['state_dict'].items():
