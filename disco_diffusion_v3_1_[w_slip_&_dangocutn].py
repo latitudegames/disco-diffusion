@@ -1020,7 +1020,7 @@ model_secondary_link = 'https://v-diffusion.s3.us-west-2.amazonaws.com/secondary
 model_256_path = f'{model_path}/256x256_diffusion_uncond.pt'
 model_512_path = f'{model_path}/512x512_diffusion_uncond_finetune_008100.pt'
 model_secondary_path = f'{model_path}/secondary_model_imagenet_2.pth'
-
+# TODO @seang: update to PVC
 # Download the diffusion model
 if diffusion_model == '256x256_diffusion_uncond':
     if os.path.exists(model_256_path) and check_model_SHA:
@@ -1033,12 +1033,12 @@ if diffusion_model == '256x256_diffusion_uncond':
             model_256_downloaded = True
         else:
             print("256 Model SHA doesn't match, redownloading...")
-            !wget - -continue {model_256_link} - P {model_path}
+            #!wget - -continue {model_256_link} - P {model_path}
             model_256_downloaded = True
     elif os.path.exists(model_256_path) and not check_model_SHA or model_256_downloaded == True:
         print('256 Model already downloaded, check check_model_SHA if the file is corrupt')
     else:
-        !wget - -continue {model_256_link} - P {model_path}
+        #!wget - -continue {model_256_link} - P {model_path}
         model_256_downloaded = True
 elif diffusion_model == '512x512_diffusion_uncond_finetune_008100':
     if os.path.exists(model_512_path) and check_model_SHA:
@@ -1051,12 +1051,12 @@ elif diffusion_model == '512x512_diffusion_uncond_finetune_008100':
             model_512_downloaded = True
         else:
             print("512 Model SHA doesn't match, redownloading...")
-            !wget - -continue {model_512_link} - P {model_path}
+            #!wget - -continue {model_512_link} - P {model_path}
             model_512_downloaded = True
     elif os.path.exists(model_512_path) and not check_model_SHA or model_512_downloaded == True:
         print('512 Model already downloaded, check check_model_SHA if the file is corrupt')
     else:
-        !wget - -continue {model_512_link} - P {model_path}
+        #!wget - -continue {model_512_link} - P {model_path}
         model_512_downloaded = True
 
 # TODO @seang: update to PVC
