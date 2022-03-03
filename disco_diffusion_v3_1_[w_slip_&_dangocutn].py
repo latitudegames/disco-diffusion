@@ -44,7 +44,6 @@ from glob import glob
 import requests
 from PIL import Image, ImageOps
 import lpips
-from IPython import display
 import timm
 import math
 import io
@@ -648,23 +647,16 @@ def do_run():
     else:
         sample_fn = diffusion.p_sample_loop_progressive
 
-    # batches_display = Output()
-    # display.display(batches_display)
-    # run_display = Output()
-    # display.display(run_display)
     image_display = Output()
 
     # with batches_display:
     for i in range(n_batches):
-        display.clear_output(wait=True)
         batchBar = tqdm(range(n_batches), desc="Batches")
         batchBar.n = i
         batchBar.refresh()
         print('')
-        display.display(image_display)
         gc.collect()
         torch.cuda.empty_cache()
-        # display.clear_output(wait=True)
         cur_t = diffusion.num_timesteps - skip_timesteps - 1
         total_steps = cur_t
 
@@ -697,8 +689,6 @@ def do_run():
                 randomize_class=randomize_class,
             )
 
-        # with run_display:
-        # display.clear_output(wait=True)
         for j, sample in enumerate(samples):
             cur_t -= 1
             intermediateStep = False
@@ -728,9 +718,6 @@ def do_run():
                         image = TF.to_pil_image(
                             image.add(1).div(2).clamp(0, 1))
                         image.save('progress.png')
-                        if j % display_rate == 0 or cur_t == -1:
-                            display.clear_output(wait=True)
-                            display.display(display.Image('progress.png'))
                         if steps_per_checkpoint is not None:
                             if j % steps_per_checkpoint == 0 and j > 0:
                                 if intermediates_in_subfolder is True:
@@ -747,7 +734,6 @@ def do_run():
                             if i == 0:
                                 save_settings()
                             image.save(f'{batchFolder}/{filename}')
-                            display.clear_output()
 
         plt.plot(np.array(loss_values), 'r')
 
