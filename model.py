@@ -30,7 +30,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 from guided_diffusion.script_util import create_model_and_diffusion, model_and_diffusion_defaults
-from models import SLIP_VITB16, SLIP, SLIP_VITL16
+# from models import SLIP_VITB16, SLIP, SLIP_VITL16
 from resize_right import resize
 import clip
 from tqdm.notebook import tqdm
@@ -1109,7 +1109,7 @@ if RN101 is True:
                        0].eval().requires_grad_(False).to(device))
 
 if SLIPB16:
-    SLIPB16model = SLIP_VITB16(ssl_mlp_dim=4096, ssl_emb_dim=256)
+    #SLIPB16model = SLIP_VITB16(ssl_mlp_dim=4096, ssl_emb_dim=256)
     # TODO @seang: update to PVC
     # if not os.path.exists(f'{model_path}/slip_base_100ep.pt'):
     # !wget https: // dl.fbaipublicfiles.com/slip/slip_base_100ep.pt - P {model_path}
@@ -1118,13 +1118,13 @@ if SLIPB16:
     for k, v in sd['state_dict'].items():
         real_sd['.'.join(k.split('.')[1:])] = v
     del sd
-    SLIPB16model.load_state_dict(real_sd)
-    SLIPB16model.requires_grad_(False).eval().to(device)
+    # SLIPB16model.load_state_dict(real_sd)
+    # SLIPB16model.requires_grad_(False).eval().to(device)
 
-    clip_models.append(SLIPB16model)
+    # clip_models.append(SLIPB16model)
 
 if SLIPL16:
-    SLIPL16model = SLIP_VITL16(ssl_mlp_dim=4096, ssl_emb_dim=256)
+    # SLIPL16model = SLIP_VITL16(ssl_mlp_dim=4096, ssl_emb_dim=256)
     # TODO @seang: update to PVC
     # if not os.path.exists(f'{model_path}/slip_large_100ep.pt'):
     # !wget https: // dl.fbaipublicfiles.com/slip/slip_large_100ep.pt - P {model_path}
@@ -1133,10 +1133,10 @@ if SLIPL16:
     for k, v in sd['state_dict'].items():
         real_sd['.'.join(k.split('.')[1:])] = v
     del sd
-    SLIPL16model.load_state_dict(real_sd)
-    SLIPL16model.requires_grad_(False).eval().to(device)
+    # SLIPL16model.load_state_dict(real_sd)
+    # SLIPL16model.requires_grad_(False).eval().to(device)
 
-    clip_models.append(SLIPL16model)
+    # clip_models.append(SLIPL16model)
 
 normalize = T.Normalize(mean=[0.48145466, 0.4578275, 0.40821073], std=[
                         0.26862954, 0.26130258, 0.27577711])
