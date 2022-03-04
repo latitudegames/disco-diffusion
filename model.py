@@ -176,7 +176,7 @@ Run this once at the start of your session and after a restart.
 
 
 root_path = f'/content'
-model_path = '/content'
+model_path = '/mnt/models/disco-diffusion'
 
 model_256_downloaded = False
 model_512_downloaded = False
