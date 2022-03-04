@@ -1257,7 +1257,7 @@ image_prompts = [  # currently disabled
 # @title Do the Run!
 
 display_rate = 50  # @param{type: 'number'}
-n_batches = 100  # @param{type: 'number'}
+n_batches = 1  # @param{type: 'number'}
 batch_size = 1
 
 batchNum = len(glob(batchFolder+"/*.txt"))
