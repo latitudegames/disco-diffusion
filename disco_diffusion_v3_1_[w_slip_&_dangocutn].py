@@ -44,7 +44,7 @@ from glob import glob
 import requests
 from PIL import Image, ImageOps
 import lpips
-import timm
+# import timm
 import math
 import io
 import gc
