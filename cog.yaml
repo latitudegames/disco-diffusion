@@ -24,8 +24,12 @@ build:
 
   # commands run after the environment is setup
   run:
-    # - "echo env is ready!"
-    # - "echo another command if needed"
+    - git clone https://github.com/openai/CLIP
+    - git clone https://github.com/facebookresearch/SLIP.git
+    - git clone https://github.com/crowsonkb/guided-diffusion
+    - git clone https://github.com/assafshocher/ResizeRight.git
+    - pip install -e ./CLIP
+    - pip install -e ./guided-diffusion
 
 # predict.py defines how predictions are run on your model
 predict: "predict.py:Predictor"
