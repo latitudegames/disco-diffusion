@@ -30,6 +30,7 @@ build:
     - git clone https://github.com/assafshocher/ResizeRight.git
     - pip install -e ./CLIP
     - pip install -e ./guided-diffusion
+    # TODO @seang: replace this self cloning step when cog supports adding files to run steps: https://github.com/replicate/cog/issues/223
     - git clone https://github.com/latitudegames/disco-diffusion && mv disco-diffusion/* .
 
 # predict.py defines how predictions are run on your model
