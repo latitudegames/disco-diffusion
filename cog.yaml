@@ -21,12 +21,12 @@ build:
     - "ipywidgets==7.6.5"
     - "lpips==0.1.4"
     - "DateTime==4.4"
-    - "matplotlib==3.5.11"
+    - "matplotlib==3.5.1"
 
   # commands run after the environment is setup
   run:
-    - git clone https://github.com/openai/CLIP
-    - git clone https://github.com/facebookresearch/SLIP.git
+    - git clone https://github.com/openai/CLIP src/CLIP
+    - git clone https://github.com/facebookresearch/SLIP.git src/
     - git clone https://github.com/crowsonkb/guided-diffusion
     - git clone https://github.com/assafshocher/ResizeRight.git
     - pip install -e ./CLIP
