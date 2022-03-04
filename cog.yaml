@@ -28,7 +28,7 @@ build:
     - git clone https://github.com/openai/CLIP src/CLIP
     - git clone https://github.com/facebookresearch/SLIP.git src/SLIP
     - git clone https://github.com/crowsonkb/guided-diffusion src/guided-diffusion
-    - git clone https://github.com/assafshocher/ResizeRight.git src/ResizeRight
+    - git clone https://github.com/assafshocher/ResizeRight.git src/ResizeRight && mv src/ResizeRight/* src
     - pip install -e ./src/CLIP
     - pip install -e ./src/guided-diffusion
     # TODO @seang: replace this self cloning step when cog supports adding files to run steps: https://github.com/replicate/cog/issues/223
