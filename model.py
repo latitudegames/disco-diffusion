@@ -980,7 +980,6 @@ model_secondary_link = 'https://v-diffusion.s3.us-west-2.amazonaws.com/secondary
 model_256_path = f'{model_path}/256x256_diffusion_uncond.pt'
 model_512_path = f'{model_path}/512x512_diffusion_uncond_finetune_008100.pt'
 model_secondary_path = f'{model_path}/secondary_model_imagenet_2.pth'
-# TODO @seang: update to PVC
 # Download the diffusion model
 if diffusion_model == '256x256_diffusion_uncond':
     if os.path.exists(model_256_path) and check_model_SHA:
@@ -1019,7 +1018,6 @@ elif diffusion_model == '512x512_diffusion_uncond_finetune_008100':
         #!wget - -continue {model_512_link} - P {model_path}
         model_512_downloaded = True
 
-# TODO @seang: update to PVC
 # Download the secondary diffusion model v2
 if use_secondary_model == True:
     if os.path.exists(model_secondary_path) and check_model_SHA:
