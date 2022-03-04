@@ -181,14 +181,6 @@ model_path = '/content/'
 model_256_downloaded = False
 model_512_downloaded = False
 model_secondary_downloaded = False
-# TODO @seang: move to cog run
-# !git clone https: // github.com/openai/CLIP
-# !git clone https: // github.com/facebookresearch/SLIP.git
-# !git clone https: // github.com/crowsonkb/guided-diffusion
-# !git clone https: // github.com/assafshocher/ResizeRight.git
-# !pip install - e ./CLIP
-# !pip install - e ./guided-diffusion
-# !pip install lpips datetime timm
 sys.path.append('./SLIP')
 sys.path.append('./ResizeRight')
 sys.path.append('./CLIP')
