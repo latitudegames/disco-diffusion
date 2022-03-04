@@ -26,13 +26,13 @@ build:
   # commands run after the environment is setup
   run:
     - git clone https://github.com/openai/CLIP src/CLIP
-    - git clone https://github.com/facebookresearch/SLIP.git src/
-    - git clone https://github.com/crowsonkb/guided-diffusion
-    - git clone https://github.com/assafshocher/ResizeRight.git
-    - pip install -e ./CLIP
-    - pip install -e ./guided-diffusion
+    - git clone https://github.com/facebookresearch/SLIP.git src/SLIP
+    - git clone https://github.com/crowsonkb/guided-diffusion src/guided-diffusion
+    - git clone https://github.com/assafshocher/ResizeRight.git src/ResizeRight
+    - pip install -e ./src/CLIP
+    - pip install -e ./src/guided-diffusion
     # TODO @seang: replace this self cloning step when cog supports adding files to run steps: https://github.com/replicate/cog/issues/223
-    - git clone https://github.com/latitudegames/disco-diffusion && mv disco-diffusion/* .
+    - git clone https://github.com/latitudegames/disco-diffusion src/disco-diffusion && mv src/disco-diffusion/* src
 
 # predict.py defines how predictions are run on your model
 predict: "predict.py:Predictor"
