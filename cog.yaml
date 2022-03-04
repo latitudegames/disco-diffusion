@@ -32,7 +32,7 @@ build:
     - pip install -e ./src/CLIP
     - pip install -e ./src/guided-diffusion
     # TODO @seang: replace this self cloning step when cog supports adding files to run steps: https://github.com/replicate/cog/issues/223
-    - git clone https://github.com/latitudegames/disco-diffusion src/disco-diffusion && cd src/disco-diffusion && git checkout 8cae1f999f10497527368d935ed73d6620147194 && cd ../.. && mv src/disco-diffusion/* src
+    - git clone https://github.com/latitudegames/disco-diffusion src/disco-diffusion && cd src/disco-diffusion && git checkout edae03be78b44b45aa9f539a17386248746dfbee && cd ../.. && mv src/disco-diffusion/* src
 
 # predict.py defines how predictions are run on your model
 predict: "predict.py:Predictor"
