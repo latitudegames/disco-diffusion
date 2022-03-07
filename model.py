@@ -54,6 +54,8 @@ import sys
 from os import path
 import os
 import argparse
+import boto3
+s3 = boto3.resource('s3')
 
 # Symlink PVC to target directories for models and weights
 # CLIP
@@ -507,7 +509,7 @@ def do_run():
     discoDiffusionParser.add_argument("-bn", "--bucket_name",
                                       help="S3 Bucket Name to upload to", dest='bucket_name')
     args = discoDiffusionParser.parse_args()
-    # bucket_root = f"https://{args.bucket_name}.s3.us-east-2.amazonaws.com/"
+    bucket_root = f"https://{args.bucket_name}.s3.us-east-2.amazonaws.com/"
 
     if args.prompt is not None:
         text_prompts = [args.prompt]
@@ -760,7 +762,13 @@ def do_run():
                             if i == 0:
                                 save_settings()
                             image.save(f'{batchFolder}/{filename}')
-
+                            if args.bucket_name is not None:
+                                outfile_bytes = open(
+                                    f'{batchFolder}/{filename}', 'rb')
+                                s3.Bucket(args.bucket_name).put_object(
+                                    Key=f'{args.output}-{+ 1}.png', Body=outfile_bytes)
+                                print(
+                                    f'Added to S3 {bucket_root}{args.output}-{k + 1}.png')
         plt.plot(np.array(loss_values), 'r')
 
 
