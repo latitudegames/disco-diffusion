@@ -53,6 +53,7 @@ from dataclasses import dataclass
 import sys
 from os import path
 import os
+import argparse
 
 # Symlink PVC to target directories for models and weights
 # CLIP
@@ -496,6 +497,16 @@ def range_loss(input):
 
 
 def do_run():
+    discoDiffusionParser = argparse.ArgumentParser(
+        description='Image generation using Disco Diffusion')
+    discoDiffusionParser.add_argument(
+        "--prompt", type=str, help="A beautiful painting of a singular lighthouse, shining its light across a tumultuous sea of blood by greg rutkowski and thomas kinkade, trending on artstation.", dest='prompt')
+    discoDiffusionParser.add_argument("-o",    "--output", type=str,
+                                      help="Output file uuid", dest='output')
+    discoDiffusionParser.add_argument("-bn", "--bucket_name",
+                                      help="S3 Bucket Name to upload to", dest='bucket_name')
+    args = discoDiffusionParser.parse_args()
+    # bucket_root = f"https://{args.bucket_name}.s3.us-east-2.amazonaws.com/"
     loss_values = []
 
     if seed is not None:
