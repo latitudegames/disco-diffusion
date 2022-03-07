@@ -497,6 +497,7 @@ def range_loss(input):
 
 
 def do_run():
+    global text_prompts
     discoDiffusionParser = argparse.ArgumentParser(
         description='Image generation using Disco Diffusion')
     discoDiffusionParser.add_argument(
@@ -507,6 +508,9 @@ def do_run():
                                       help="S3 Bucket Name to upload to", dest='bucket_name')
     args = discoDiffusionParser.parse_args()
     # bucket_root = f"https://{args.bucket_name}.s3.us-east-2.amazonaws.com/"
+
+    if args.prompt is not None:
+        text_prompts = [args.prompt]
     loss_values = []
 
     if seed is not None:
