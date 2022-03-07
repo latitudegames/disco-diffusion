@@ -22,6 +22,7 @@ build:
     - "lpips==0.1.4"
     - "DateTime==4.4"
     - "matplotlib==3.5.1"
+    - "boto3==1.21.13"
 
   # commands run after the environment is setup
   run:
