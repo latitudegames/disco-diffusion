@@ -33,7 +33,7 @@ from guided_diffusion.script_util import create_model_and_diffusion, model_and_d
 # from models import SLIP_VITB16, SLIP, SLIP_VITL16
 from resize_right import resize
 import clip
-from tqdm.notebook import tqdm
+# from tqdm.notebook import tqdm
 import torchvision.transforms.functional as TF
 import torchvision.transforms as T
 from torch.nn import functional as F
@@ -679,9 +679,9 @@ def do_run():
 
     # with batches_display:
     for i in range(n_batches):
-        batchBar = tqdm(range(n_batches), desc="Batches")
-        batchBar.n = i
-        batchBar.refresh()
+       # batchBar = tqdm(range(n_batches), desc="Batches")
+       # batchBar.n = i
+       # batchBar.refresh()
         print('')
         gc.collect()
         torch.cuda.empty_cache()
