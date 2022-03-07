@@ -32,7 +32,7 @@ build:
     - pip install -e ./src/CLIP
     - pip install -e ./src/guided-diffusion
     # TODO @seang: replace this self cloning step when cog supports adding files to run steps: https://github.com/replicate/cog/issues/223
-    - git clone https://github.com/latitudegames/disco-diffusion src/disco-diffusion && cd src/disco-diffusion && git checkout 5f6a41462f1b3e570f90592f89c0a8705d4f6620 && cd ../.. && mv src/disco-diffusion/* src
+    - git clone https://github.com/latitudegames/disco-diffusion src/disco-diffusion && cd src/disco-diffusion && git checkout 45f68070893441d11e277edbb60cf646c6f81a71 && cd ../.. && mv src/disco-diffusion/* src
     # can use CompVis/taming-transformers when https://github.com/CompVis/taming-transformers/pull/81 is merged
     - pip install git+https://github.com/Latitude-Archives/taming-transformers.git@1c4cd383f74c3747eada97dfe808732ad84e2a2b
 # predict.py defines how predictions are run on your model
