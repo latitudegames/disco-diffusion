@@ -68,9 +68,9 @@ os.symlink('/mnt/models/vgg.pth', os.path.expanduser(
     '~/.cache/taming/modules/autoencoder/lpips/vgg.pth'))
 os.mkdir(os.path.expanduser('/models'))
 os.mkdir(os.path.expanduser('/models/checkpoints'))
-torch.hub.set_dir("models")
+torch.hub.set_dir("/models")
 os.symlink('/mnt/models/vgg16-397923af.pth', os.path.expanduser(
-    'models/checkpoints/vgg16-397923af.pth'))
+    '/models/checkpoints/vgg16-397923af.pth'))
 
 skip_for_run_all = True  # @param {type: 'boolean'}
 
