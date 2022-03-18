@@ -1,6 +1,6 @@
 # Configuration for Cog ⚙️
 # Reference: https://github.com/replicate/cog/blob/main/docs/yaml.md
-image: "latitudetech/disco-diffusion:23"
+image: "latitudetech/disco-diffusion:24"
 build:
   # set to true if your model requires a GPU
   gpu: true
@@ -33,7 +33,7 @@ build:
     - pip install -e ./src/CLIP
     - pip install -e ./src/guided-diffusion
     # TODO @seang: replace this self cloning step when cog supports adding files to run steps: https://github.com/replicate/cog/issues/223
-    - git clone https://github.com/latitudegames/disco-diffusion src/disco-diffusion && cd src/disco-diffusion && git checkout 42c65a22a719d4d4c8c217cc5a05907a5dd3a9c8 && cd ../.. && mv src/disco-diffusion/* src
+    - git clone https://github.com/latitudegames/disco-diffusion src/disco-diffusion && cd src/disco-diffusion && git checkout de9d3b2a6f1f014f2ebd6df66c5f1ec798857939 && cd ../.. && mv src/disco-diffusion/* src
     # can use CompVis/taming-transformers when https://github.com/CompVis/taming-transformers/pull/81 is merged
     - pip install git+https://github.com/Latitude-Archives/taming-transformers.git@1c4cd383f74c3747eada97dfe808732ad84e2a2b
     - chmod +x src/main.sh
