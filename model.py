@@ -26,7 +26,7 @@ I, Somnai (https://twitter.com/Somnai_dreams), have made QoL improvements and as
 import hashlib
 from ipywidgets import Output
 import random
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 from guided_diffusion.script_util import create_model_and_diffusion, model_and_diffusion_defaults
@@ -769,7 +769,7 @@ def do_run():
                                     Key=f'{args.output}-{+ 1}.png', Body=outfile_bytes)
                                 print(
                                     f'Added to S3 {bucket_root}{args.output}-{k + 1}.png')
-        plt.plot(np.array(loss_values), 'r')
+       # plt.plot(np.array(loss_values), 'r')
 
 
 def save_settings():
