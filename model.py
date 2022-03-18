@@ -1257,7 +1257,7 @@ if type(intermediate_saves) is not list:
 else:
     steps_per_checkpoint = None
 
-if steps_per_checkpoint is not 0 and intermediates_in_subfolder is True:
+if steps_per_checkpoint != 0 and intermediates_in_subfolder is True:
     partialFolder = f'{batchFolder}/partials'
     createPath(partialFolder)
 
