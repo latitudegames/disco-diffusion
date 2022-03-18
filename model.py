@@ -26,14 +26,12 @@ I, Somnai (https://twitter.com/Somnai_dreams), have made QoL improvements and as
 import hashlib
 from ipywidgets import Output
 import random
-# import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 from guided_diffusion.script_util import create_model_and_diffusion, model_and_diffusion_defaults
 # from models import SLIP_VITB16, SLIP, SLIP_VITL16
 from resize_right import resize
 import clip
-# from tqdm.notebook import tqdm
 import torchvision.transforms.functional as TF
 import torchvision.transforms as T
 from torch.nn import functional as F
@@ -677,11 +675,7 @@ def do_run():
 
     image_display = Output()
 
-    # with batches_display:
     for i in range(n_batches):
-       # batchBar = tqdm(range(n_batches), desc="Batches")
-       # batchBar.n = i
-       # batchBar.refresh()
         print('')
         gc.collect()
         torch.cuda.empty_cache()
@@ -769,7 +763,6 @@ def do_run():
                                     Key=f'{args.output}-{+ 1}.png', Body=outfile_bytes)
                                 print(
                                     f'Added to S3 {bucket_root}{args.output}-{k + 1}.png')
-       # plt.plot(np.array(loss_values), 'r')
 
 
 def save_settings():
