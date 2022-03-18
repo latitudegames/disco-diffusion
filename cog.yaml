@@ -1,6 +1,6 @@
 # Configuration for Cog ⚙️
 # Reference: https://github.com/replicate/cog/blob/main/docs/yaml.md
-
+image: "latitudetech/disco-diffusion:23"
 build:
   # set to true if your model requires a GPU
   gpu: true
@@ -37,5 +37,3 @@ build:
     # can use CompVis/taming-transformers when https://github.com/CompVis/taming-transformers/pull/81 is merged
     - pip install git+https://github.com/Latitude-Archives/taming-transformers.git@1c4cd383f74c3747eada97dfe808732ad84e2a2b
     - chmod +x src/main.sh
-# predict.py defines how predictions are run on your model
-predict: "predict.py:Predictor"
