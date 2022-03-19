@@ -24,7 +24,6 @@ I, Somnai (https://twitter.com/Somnai_dreams), have made QoL improvements and as
 # @title <- View Disco Changelog
 
 import hashlib
-from ipywidgets import Output
 import random
 import numpy as np
 from datetime import datetime
@@ -673,8 +672,6 @@ def do_run():
     else:
         sample_fn = diffusion.p_sample_loop_progressive
 
-    image_display = Output()
-
     for i in range(n_batches):
         print('')
         gc.collect()
@@ -720,49 +717,48 @@ def do_run():
             elif j in intermediate_saves:
                 intermediateStep = True
 
-            with image_display:
-                if j % display_rate == 0 or cur_t == -1 or intermediateStep == True:
-                    for k, image in enumerate(sample['pred_xstart']):
-                        # tqdm.write(f'Batch {i}, step {j}, output {k}:')
-                        current_time = datetime.now().strftime('%y%m%d-%H%M%S_%f')
-                        percent = math.ceil(j/total_steps*100)
-                        if n_batches > 0:
-                            # if intermediates are saved to the subfolder, don't append a step or percentage to the name
-                            if cur_t == -1 and intermediates_in_subfolder is True:
-                                filename = f'{batch_name}({batchNum})_{i:04}.png'
-                            else:
-                                # If we're working with percentages, append it
-                                if steps_per_checkpoint is not None:
-                                    filename = f'{batch_name}({batchNum})_{i:04}-{percent:02}%.png'
-                                # Or else, iIf we're working with specific steps, append those
-                                else:
-                                    filename = f'{batch_name}({batchNum})_{i:04}-{j:03}.png'
-                        image = TF.to_pil_image(
-                            image.add(1).div(2).clamp(0, 1))
-                        image.save('progress.png')
-                        if steps_per_checkpoint is not None:
-                            if j % steps_per_checkpoint == 0 and j > 0:
-                                if intermediates_in_subfolder is True:
-                                    image.save(f'{partialFolder}/{filename}')
-                                else:
-                                    image.save(f'{batchFolder}/{filename}')
+            if j % display_rate == 0 or cur_t == -1 or intermediateStep == True:
+                for k, image in enumerate(sample['pred_xstart']):
+                    # tqdm.write(f'Batch {i}, step {j}, output {k}:')
+                    current_time = datetime.now().strftime('%y%m%d-%H%M%S_%f')
+                    percent = math.ceil(j/total_steps*100)
+                    if n_batches > 0:
+                        # if intermediates are saved to the subfolder, don't append a step or percentage to the name
+                        if cur_t == -1 and intermediates_in_subfolder is True:
+                            filename = f'{batch_name}({batchNum})_{i:04}.png'
                         else:
-                            if j in intermediate_saves:
-                                if intermediates_in_subfolder is True:
-                                    image.save(f'{partialFolder}/{filename}')
-                                else:
-                                    image.save(f'{batchFolder}/{filename}')
-                        if cur_t == -1:
-                            if i == 0:
-                                save_settings()
-                            image.save(f'{batchFolder}/{filename}')
-                            if args.bucket_name is not None:
-                                outfile_bytes = open(
-                                    f'{batchFolder}/{filename}', 'rb')
-                                s3.Bucket(args.bucket_name).put_object(
-                                    Key=f'{args.output}-{+ 1}.png', Body=outfile_bytes)
-                                print(
-                                    f'Added to S3 {bucket_root}{args.output}-{k + 1}.png')
+                            # If we're working with percentages, append it
+                            if steps_per_checkpoint is not None:
+                                filename = f'{batch_name}({batchNum})_{i:04}-{percent:02}%.png'
+                            # Or else, iIf we're working with specific steps, append those
+                            else:
+                                filename = f'{batch_name}({batchNum})_{i:04}-{j:03}.png'
+                    image = TF.to_pil_image(
+                        image.add(1).div(2).clamp(0, 1))
+                    image.save('progress.png')
+                    if steps_per_checkpoint is not None:
+                        if j % steps_per_checkpoint == 0 and j > 0:
+                            if intermediates_in_subfolder is True:
+                                image.save(f'{partialFolder}/{filename}')
+                            else:
+                                image.save(f'{batchFolder}/{filename}')
+                    else:
+                        if j in intermediate_saves:
+                            if intermediates_in_subfolder is True:
+                                image.save(f'{partialFolder}/{filename}')
+                            else:
+                                image.save(f'{batchFolder}/{filename}')
+                    if cur_t == -1:
+                        if i == 0:
+                            save_settings()
+                        image.save(f'{batchFolder}/{filename}')
+                        if args.bucket_name is not None:
+                            outfile_bytes = open(
+                                f'{batchFolder}/{filename}', 'rb')
+                            s3.Bucket(args.bucket_name).put_object(
+                                Key=f'{args.output}-{+ 1}.png', Body=outfile_bytes)
+                            print(
+                                f'Added to S3 {bucket_root}{args.output}-{k + 1}.png')
 
 
 def save_settings():
