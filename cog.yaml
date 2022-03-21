@@ -26,7 +26,7 @@ build:
     - "pytorch-lightning==1.0.8"
     - "einops==0.4.1"
     - "torch-fidelity==0.3.0"
-    - "wanb==0.12.11"
+    - "wandb==0.12.11"
     - "fvcore==0.1.5.post20220305"
     - "iopath==0.1.9"
 
