@@ -52,8 +52,6 @@ from os import path
 import os
 import argparse
 import boto3
-import traceback
-
 s3 = boto3.resource('s3')
 
 # Symlink PVC to target directories for models and weights
@@ -1320,10 +1318,8 @@ gc.collect()
 torch.cuda.empty_cache()
 try:
     do_run()
-except Exception:
-    print(traceback.format_exc())
-    # or
-    print(sys.exc_info()[2])
+except KeyboardInterrupt:
+    pass
 finally:
     print('Seed used:', seed)
     gc.collect()
