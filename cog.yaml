@@ -29,6 +29,7 @@ build:
     - "wandb==0.12.11"
     - "fvcore==0.1.5.post20220305"
     - "iopath==0.1.9"
+    - "opencv-python==4.5.5.64"
 
   # commands run after the environment is setup
   run:
