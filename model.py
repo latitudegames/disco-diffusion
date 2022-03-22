@@ -184,8 +184,7 @@ os.mkdir(os.path.expanduser('/models/checkpoints'))
 torch.hub.set_dir("/models")
 os.symlink('/mnt/models/vgg16-397923af.pth', os.path.expanduser(
     '/models/checkpoints/vgg16-397923af.pth'))
-os.symlink('/mnt/models/vgg16-397923af.pth', os.path.expanduser(
-    '/models/checkpoints/vgg16-397923af.pth'))
+
 
 """
 # 1. Set Up
