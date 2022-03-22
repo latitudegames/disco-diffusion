@@ -36,7 +36,7 @@ build:
     - git clone https://github.com/facebookresearch/SLIP.git src/SLIP
     - git clone https://github.com/crowsonkb/guided-diffusion src/guided-diffusion
     - git clone https://github.com/assafshocher/ResizeRight.git src/ResizeRight && mv src/ResizeRight/* src
-    - git clone https://github.com/isl-org/MiDaS.git src/MiDaS
+    - git clone https://github.com/isl-org/MiDaS.git src/MiDaS && mv src/MiDaS/midas_utils.py src/midas_utils.py
     # rename MiDaS utils.py to avoid conflict
     - mv src/MiDaS/utils.py src/MiDaS/midas_utils.py
     - git clone https://github.com/alembics/disco-diffusion src/disco-diffusion
