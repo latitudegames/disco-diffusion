@@ -4,7 +4,7 @@ image: "latitudetech/disco-diffusion:29"
 build:
   # set to true if your model requires a GPU
   gpu: true
-
+  cuda: "11.3"
   # a list of ubuntu apt packages to install
   # system_packages:
   # - "libgl1-mesa-glx"
@@ -16,8 +16,8 @@ build:
   # a list of packages in the format <package-name>==<version>
   python_packages:
     - "numpy==1.19.4"
-    - "torch==1.10.00+cu113"
-    - "torchvision==0.11.10+cu113"
+    - "torch==1.10.00"
+    - "torchvision==0.11.1"
     - "lpips==0.1.4"
     - "DateTime==4.4"
     - "matplotlib==3.5.1"
