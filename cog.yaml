@@ -38,7 +38,7 @@ build:
     - git clone https://github.com/facebookresearch/SLIP.git src/SLIP
     - git clone https://github.com/crowsonkb/guided-diffusion src/guided-diffusion
     - git clone https://github.com/assafshocher/ResizeRight.git src/ResizeRight && mv src/ResizeRight/* src
-      # rename MiDaS utils.py to avoid conflict
+      # rename MiDaS utils.py to avoid conflict and move to top level along with midas module
     - git clone https://github.com/isl-org/MiDaS.git src/MiDaS && mv src/MiDaS/utils.py src/midas_utils.py && mv src/MiDaS/midas src/midas
     - git clone https://github.com/alembics/disco-diffusion src/disco-diffusion
     - mv src/disco-diffusion/disco_xform_utils.py src/disco_xform_utils.py
