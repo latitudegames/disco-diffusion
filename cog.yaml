@@ -1,6 +1,6 @@
 # Configuration for Cog ⚙️
 # Reference: https://github.com/replicate/cog/blob/main/docs/yaml.md
-image: "latitudetech/disco-diffusion:30"
+image: "latitudetech/disco-diffusion:31"
 build:
   # set to true if your model requires a GPU
   gpu: true
