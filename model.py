@@ -227,8 +227,7 @@ createPath(initDirPath)
 outDirPath = f'{root_path}/images_out'
 createPath(outDirPath)
 
-model_path = f'mnt/models'
-createPath(model_path)
+model_path = f'/mnt/models/disco-diffusion'
 
 # libraries = f'{root_path}/libraries'
 # createPath(libraries)
