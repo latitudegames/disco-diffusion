@@ -1107,7 +1107,7 @@ def do_run():
                     clip_denoised=clip_denoised,
                     model_kwargs={},
                     cond_fn=cond_fn,
-                    progress=True,
+                    progress=False,
                     skip_timesteps=skip_steps,
                     init_image=init,
                     randomize_class=randomize_class,
@@ -1120,15 +1120,13 @@ def do_run():
                     clip_denoised=clip_denoised,
                     model_kwargs={},
                     cond_fn=cond_fn,
-                    progress=True,
+                    progress=False,
                     skip_timesteps=skip_steps,
                     init_image=init,
                     randomize_class=randomize_class,
                     order=2,
                 )
 
-            # with run_display:
-            # display.clear_output(wait=True)
             imgToSharpen = None
             for j, sample in enumerate(samples):
                 cur_t -= 1
