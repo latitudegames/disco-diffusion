@@ -694,6 +694,11 @@ stop_on_next_loop = False
 
 
 def do_run():
+    global model
+    global diffusion
+    global timestep_respacing
+    global diffusion_steps
+    global model_config
     global text_prompts
     global args
     global init_image
@@ -736,6 +741,13 @@ def do_run():
         init_image = None
     if external_args.steps is not None:
         steps = external_args.steps
+        # Update Model Settings
+        timestep_respacing = f'ddim{steps}'
+        diffusion_steps = (1000//steps)*steps if steps < 1000 else steps
+        model_config.update({
+            'timestep_respacing': timestep_respacing,
+            'diffusion_steps': diffusion_steps,
+        })
     args = {
         'batchNum': batchNum,
         'prompts_series': split_prompts(text_prompts) if text_prompts else None,
@@ -818,6 +830,19 @@ def do_run():
         'rand_mag': rand_mag,
     }
     args = SimpleNamespace(**args)
+
+    print('Prepping model...')
+    model, diffusion = create_model_and_diffusion(**model_config)
+    model.load_state_dict(torch.load(
+        f'{model_path}/{diffusion_model}.pt', map_location='cpu'))
+    model.requires_grad_(False).eval().to(device)
+    for name, param in model.named_parameters():
+        if 'qkv' in name or 'norm' in name or 'proj' in name:
+            param.requires_grad_()
+    if model_config['use_fp16']:
+        model.convert_to_fp16()
+    # End of original model preparation
+
     if (args.animation_mode == "3D") and (args.midas_weight > 0.0):
         midas_model, midas_transform, midas_net_w, midas_net_h, midas_resize_mode, midas_normalization = init_midas_depth_model(
             args.midas_depth_model)
@@ -2783,17 +2808,6 @@ args = {
 }
 
 args = SimpleNamespace(**args)
-
-print('Prepping model...')
-model, diffusion = create_model_and_diffusion(**model_config)
-model.load_state_dict(torch.load(
-    f'{model_path}/{diffusion_model}.pt', map_location='cpu'))
-model.requires_grad_(False).eval().to(device)
-for name, param in model.named_parameters():
-    if 'qkv' in name or 'norm' in name or 'proj' in name:
-        param.requires_grad_()
-if model_config['use_fp16']:
-    model.convert_to_fp16()
 
 gc.collect()
 torch.cuda.empty_cache()
