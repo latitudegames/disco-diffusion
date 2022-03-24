@@ -704,6 +704,7 @@ def do_run():
     global init_image
     global width_height
     global side_x
+    global skip_steps
     seed = args.seed
     print(range(args.start_frame, args.max_frames))
     # Declare parser for external args
@@ -750,6 +751,8 @@ def do_run():
             'timestep_respacing': timestep_respacing,
             'diffusion_steps': diffusion_steps,
         })
+    if external_args.skip_steps is not None:
+        skip_steps = external_args.skip_steps
     args = {
         'batchNum': batchNum,
         'prompts_series': split_prompts(text_prompts) if text_prompts else None,
