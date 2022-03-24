@@ -714,6 +714,8 @@ def do_run():
                                       help="Width of the generated image in pixels divisible by 64", dest='width')
     discoDiffusionParser.add_argument("-h", "--height",
                                       help="Height of the generated image in pixels divisible by 64", dest='height')
+    discoDiffusionParser.add_argument("-i", "--init_image",
+                                      help="Height of the generated image in pixels divisible by 64", dest='init_image')
     # Parse external args
     external_args = discoDiffusionParser.parse_args()
     bucket_root = f"https://{external_args.bucket_name}.s3.us-east-2.amazonaws.com/"
