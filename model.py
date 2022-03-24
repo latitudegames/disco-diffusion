@@ -707,11 +707,11 @@ def do_run():
                                       help="Output file uuid", dest='output')
     discoDiffusionParser.add_argument("-bn", "--bucket_name",
                                       help="S3 Bucket Name to upload to", dest='bucket_name')
-    externals_args = discoDiffusionParser.parse_args()
-    bucket_root = f"https://{externals_args.bucket_name}.s3.us-east-2.amazonaws.com/"
+    external_args = discoDiffusionParser.parse_args()
+    bucket_root = f"https://{external_args.bucket_name}.s3.us-east-2.amazonaws.com/"
 
-    if externals_args.prompt is not None:
-        text_prompts = {0: [externals_args.prompt]}
+    if external_args.prompt is not None:
+        text_prompts = {0: [external_args.prompt]}
         args = {
             'batchNum': batchNum,
             'prompts_series': split_prompts(text_prompts) if text_prompts else None,
@@ -1185,13 +1185,13 @@ def do_run():
                             # if frame_num != args.max_frames-1:
                             #   display.clear_output()
 
-                                if externals_args.bucket_name is not None:
+                                if external_args.bucket_name is not None:
                                     outfile_bytes = open(
                                         f'{batchFolder}/{filename}', 'rb')
-                                    s3.Bucket(externals_args.bucket_name).put_object(
-                                        Key=f'{externals_args.output}-{+ 1}.png', Body=outfile_bytes)
+                                    s3.Bucket(external_args.bucket_name).put_object(
+                                        Key=f'{external_args.output}-{+ 1}.png', Body=outfile_bytes)
                                     print(
-                                        f'Added to S3 {bucket_root}{externals_args.output}-{k + 1}.png')
+                                        f'Added to S3 {bucket_root}{external_args.output}-{k + 1}.png')
 
 
 def save_settings():
