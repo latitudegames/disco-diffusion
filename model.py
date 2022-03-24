@@ -728,7 +728,10 @@ def do_run():
     if external_args.height is not None:
         width_height[1] = external_args.height
         side_y = (width_height[1]//64)*64
-
+    if external_args.init_image is not None:
+        init_image = external_args.init_image
+    else:
+        init_image = None
     args = {
         'batchNum': batchNum,
         'prompts_series': split_prompts(text_prompts) if text_prompts else None,
@@ -746,7 +749,7 @@ def do_run():
         'range_scale': range_scale,
         'sat_scale': sat_scale,
         'cutn_batches': cutn_batches,
-        'init_image': None,
+        'init_image': init_image,
         'init_scale': 1000,
         'skip_steps': 10,
         'sharpen_preset': 'Off',
