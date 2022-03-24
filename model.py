@@ -734,6 +734,8 @@ def do_run():
         init_image = external_args.init_image
     else:
         init_image = None
+    if external_args.steps is not None:
+        steps = external_args.steps
     args = {
         'batchNum': batchNum,
         'prompts_series': split_prompts(text_prompts) if text_prompts else None,
