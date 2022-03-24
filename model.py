@@ -723,6 +723,9 @@ def do_run():
     if external_args.width is not None:
         width_height[0] = external_args.width
         side_x = (width_height[0]//64)*64
+    if external_args.height is not None:
+        width_height[1] = external_args.height
+        side_y = (width_height[1]//64)*64
 
     args = {
         'batchNum': batchNum,
