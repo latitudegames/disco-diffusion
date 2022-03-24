@@ -699,6 +699,7 @@ def do_run():
     global init_image
     seed = args.seed
     print(range(args.start_frame, args.max_frames))
+    # Declare parser for external args
     discoDiffusionParser = argparse.ArgumentParser(
         description='Image generation using Disco Diffusion')
     discoDiffusionParser.add_argument(
@@ -711,9 +712,10 @@ def do_run():
                                       help="Height of the generated image in pixels divisible by 64", dest='height')
     discoDiffusionParser.add_argument("-w", "--width",
                                       help="Width of the generated image in pixels divisible by 64", dest='width')
+    # Parse external args
     external_args = discoDiffusionParser.parse_args()
     bucket_root = f"https://{external_args.bucket_name}.s3.us-east-2.amazonaws.com/"
-
+    # Reconcile external args when present
     if external_args.prompt is not None:
         text_prompts = {0: [external_args.prompt]}
     args = {
