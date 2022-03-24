@@ -709,6 +709,8 @@ def do_run():
                                       help="S3 Bucket Name to upload to", dest='bucket_name')
     discoDiffusionParser.add_argument("-h", "--height",
                                       help="Height of the generated image in pixels divisible by 64", dest='height')
+    discoDiffusionParser.add_argument("-w", "--width",
+                                      help="Width of the generated image in pixels divisible by 64", dest='width')                                  
     external_args = discoDiffusionParser.parse_args()
     bucket_root = f"https://{external_args.bucket_name}.s3.us-east-2.amazonaws.com/"
 
