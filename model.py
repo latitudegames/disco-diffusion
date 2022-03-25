@@ -2256,6 +2256,8 @@ model_config.update({
 # Make folder for batch
 batchFolder = f'{outDirPath}/{batch_name}'
 createPath(batchFolder)
+partialFolder = f'{batchFolder}/partials'
+createPath(partialFolder)
 
 """### Animation Settings"""
 
@@ -2597,9 +2599,9 @@ if type(intermediate_saves) is not list:
 else:
     steps_per_checkpoint = None
 
-if intermediate_saves and intermediates_in_subfolder is True:
-    partialFolder = f'{batchFolder}/partials'
-    createPath(partialFolder)
+# if intermediate_saves and intermediates_in_subfolder is True:
+    # partialFolder = f'{batchFolder}/partials'
+    # createPath(partialFolder)
 
     # @markdown ---
 
