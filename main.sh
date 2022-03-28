@@ -11,6 +11,9 @@
 # --iterations
 # 300
 
+# Test whether Coreweave's stupid bug is still making our jobs fail
+python -c "import torch; torch.exp(torch.zeros(100))"
+
 # And xarg will glue those together into a single command
 printf "Received input:\n"
 printf "%s\n" "$1"

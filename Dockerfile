@@ -34,4 +34,5 @@ RUN pip install -e ./src/CLIP
 RUN pip install -e ./src/guided-diffusion
 RUN pip install git+https://github.com/Latitude-Archives/taming-transformers.git@cf4d9d388ff66bd64f6da233ffc082145e2e04f5
 WORKDIR /src
-COPY . /src
+COPY *.py /src/
+COPY *.sh /src/
