@@ -773,7 +773,7 @@ def do_run():
         'cutn_batches': cutn_batches,
         'init_image': init_image,
         'init_scale': 1000,
-        'skip_steps': 10,
+        'skip_steps': skip_steps,
         'sharpen_preset': 'Off',
         'keep_unsharp': keep_unsharp,
         'side_x': side_x,
