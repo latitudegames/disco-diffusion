@@ -1250,7 +1250,8 @@ def do_run():
                                         Key=f'{external_args.output}-{+ 1}.png', Body=outfile_bytes)
                                     thumbnail_filename = '{external_args.output}-{k + 1}-thumb.png'
                                     thumbnail_image = Image.open(
-                                        f'{batchFolder}/{filename}').thumbnail((500, 500))
+                                        f'{batchFolder}/{filename}')
+                                    thumbnail_image.thumbnail((500, 500))
                                     thumbnail_image.save(
                                         f'{batchFolder}/{thumbnail_filename}')
                                     outfile_thumbnail_bytes = open(
