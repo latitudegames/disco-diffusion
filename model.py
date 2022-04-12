@@ -1249,8 +1249,16 @@ def do_run():
                                     s3.Bucket(external_args.bucket_name).put_object(
                                         Key=f'{external_args.output}-{+ 1}.png', Body=outfile_bytes)
                                     thumbnail_filename = '{external_args.output}-{k + 1}-thumb.png'
+                                    Image.open(
+                                        f'{batchFolder}/{filename}').thumbnail((500, 500)).save(f'{batchFolder}/{thumbnail_filename}')
+                                    outfile_thumbnail_bytes = open(
+                                        f'{batchFolder}/{thumbnail_filename}', 'rb')
+                                    s3.Bucket(external_args.bucket_name).put_object(
+                                        Key=thumbnail_filename, Body=outfile_thumbnail_bytes)
                                     print(
                                         f'Added to S3 {bucket_root}{external_args.output}-{k + 1}.png')
+                                    print(
+                                        f'Added thumbnail to S3 {bucket_root}{external_args.output}-{k + 1}-thumb.png')
 
 
 def save_settings():
