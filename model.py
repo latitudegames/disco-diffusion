@@ -1248,7 +1248,7 @@ def do_run():
                                         f'{batchFolder}/{filename}', 'rb')
                                     s3.Bucket(external_args.bucket_name).put_object(
                                         Key=f'{external_args.output}-{+ 1}.png', Body=outfile_bytes)
-                                    thumbnail_filename = '{external_args.output}-{k + 1}-thumb.png'
+                                    thumbnail_filename = f'{external_args.output}-{k + 1}-thumb.png'
                                     thumbnail_image = Image.open(
                                         f'{batchFolder}/{filename}')
                                     thumbnail_image.thumbnail((500, 500))
